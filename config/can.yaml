@@ -1,0 +1,10 @@
+can_interface: can0
+cansend_executable: cansend
+send_rate_hz: 50.0
+# <= STM32 limits. Per-axis limits, not magnitude of the planar velocity.
+max_axis_m_s: 0.5
+max_yaw_rad_s: 1.0
+cmd_timeout_ms: 150
+joy_timeout_ms: 150
+# Child process deadline; must be shorter than the transmission period.
+cansend_timeout_ms: 10

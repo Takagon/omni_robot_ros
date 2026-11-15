@@ -1,0 +1,14 @@
+<launch>
+  <arg name="joystick_config" default="$(find omni_robot_ros)/config/joystick.yaml"/>
+  <arg name="can_config" default="$(find omni_robot_ros)/config/can.yaml"/>
+  <arg name="dry_run" default="false"/>
+  <arg name="joy_topic" default="/joy"/>
+  <arg name="cmd_vel_topic" default="/cmd_vel"/>
+  <node pkg="omni_robot_ros" type="omni_can_bridge" name="omni_can_bridge" output="screen" required="true">
+    <rosparam command="load" file="$(arg joystick_config)"/>
+    <rosparam command="load" file="$(arg can_config)"/>
+    <param name="dry_run" value="$(arg dry_run)"/>
+    <remap from="joy" to="$(arg joy_topic)"/>
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+  </node>
+</launch>

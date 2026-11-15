@@ -1,0 +1,5 @@
+# Linux device name can also be set by the joy_dev launch argument.
+deadzone: 0.08
+autorepeat_rate: 50.0  # keep /joy and /cmd_vel fresh while holding the stick still
+coalesce_interval: 0.001
+sticky_buttons: false

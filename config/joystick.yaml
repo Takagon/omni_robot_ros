@@ -1,0 +1,23 @@
+# Shared by teleop_twist_joy AND omni_can_bridge. Indices are zero-based.
+# Example mapping only: inspect `rostopic echo /joy` for your controller.
+# Hold this button to move. Release once after startup or a timeout/fault.
+enable_button: 4
+enable_turbo_button: -1  # -1 disables turbo; otherwise set its button index
+
+axis_linear:
+  x: 1                 # left stick vertical (example)
+  y: 0                 # left stick horizontal (example)
+axis_angular:
+  yaw: 3               # right stick horizontal (example)
+
+# ROS units: m/s and rad/s. Negative scale reverses that axis.
+scale_linear:
+  x: 0.2
+  y: 0.2
+scale_angular:
+  yaw: 0.5
+scale_linear_turbo:
+  x: 0.5
+  y: 0.5
+scale_angular_turbo:
+  yaw: 1.0

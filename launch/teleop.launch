@@ -1,0 +1,27 @@
+<launch>
+  <arg name="joy_dev" default="/dev/input/js0"/>
+  <arg name="joy_config" default="$(find omni_robot_ros)/config/joy.yaml"/>
+  <arg name="joystick_config" default="$(find omni_robot_ros)/config/joystick.yaml"/>
+  <arg name="can_config" default="$(find omni_robot_ros)/config/can.yaml"/>
+  <arg name="dry_run" default="false"/>
+  <arg name="joy_topic" default="/joy"/>
+  <arg name="cmd_vel_topic" default="/cmd_vel"/>
+
+  <node pkg="joy" type="joy_node" name="joy_node" output="screen" required="true">
+    <rosparam command="load" file="$(arg joy_config)"/>
+    <param name="dev" value="$(arg joy_dev)"/>
+    <remap from="joy" to="$(arg joy_topic)"/>
+  </node>
+  <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy" output="screen" required="true">
+    <rosparam command="load" file="$(arg joystick_config)"/>
+    <remap from="joy" to="$(arg joy_topic)"/>
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+  </node>
+  <include file="$(find omni_robot_ros)/launch/bridge.launch">
+    <arg name="joystick_config" value="$(arg joystick_config)"/>
+    <arg name="can_config" value="$(arg can_config)"/>
+    <arg name="dry_run" value="$(arg dry_run)"/>
+    <arg name="joy_topic" value="$(arg joy_topic)"/>
+    <arg name="cmd_vel_topic" value="$(arg cmd_vel_topic)"/>
+  </include>
+</launch>

@@ -1,0 +1,11 @@
+/build*/
+/devel/
+/install/
+/logs/
+*.log
+*.bag
+*.obj
+*.exe
+*.pdb
+.vs/
+.vscode/
